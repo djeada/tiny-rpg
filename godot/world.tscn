@@ -1,78 +1,80 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://assets/terrain.glb" id="1_aqk2v"]
-[ext_resource type="Shape3D" path="res://assets/terrain_collision.res" id="2_036b0"]
-[ext_resource type="PackedScene" path="res://player.tscn" id="3_dwbse"]
-[ext_resource type="Script" path="res://player.gd" id="4_pkg7o"]
+[ext_resource type="PackedScene" path="res://assets/terrain.glb" id="1_036b0"]
+[ext_resource type="Shape3D" path="res://assets/terrain_collision.res" id="2_dwbse"]
+[ext_resource type="Script" path="res://world_environment.gd" id="3_pkg7o"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="4_gbfbk"]
+[ext_resource type="Script" path="res://player.gd" id="5_ioo17"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gbfbk"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wse8f"]
 sky_top_color = Color(0.32, 0.52, 0.85, 1)
 sky_horizon_color = Color(0.7, 0.8, 0.9, 1)
 ground_bottom_color = Color(0.25, 0.28, 0.25, 1)
 ground_horizon_color = Color(0.7, 0.8, 0.9, 1)
 
-[sub_resource type="Sky" id="Sky_ioo17"]
-sky_material = SubResource("ProceduralSkyMaterial_gbfbk")
+[sub_resource type="Sky" id="Sky_ic0uy"]
+sky_material = SubResource("ProceduralSkyMaterial_wse8f")
 
-[sub_resource type="Environment" id="Environment_wse8f"]
+[sub_resource type="Environment" id="Environment_k3n1d"]
 background_mode = 2
-sky = SubResource("Sky_ioo17")
+sky = SubResource("Sky_ic0uy")
 ambient_light_source = 3
 reflected_light_source = 2
 tonemap_mode = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ic0uy"]
-size = Vector3(1, 10, 42)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
-size = Vector3(1, 10, 42)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o6r5"]
-size = Vector3(42, 10, 1)
+size = Vector3(1, 10, 42)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
+size = Vector3(1, 10, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hiqwa"]
 size = Vector3(42, 10, 1)
 
-[node name="World" type="Node3D" unique_id=1952504756]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2u3nc"]
+size = Vector3(42, 10, 1)
 
-[node name="Terrain" type="Node3D" parent="." unique_id=1668090643 instance=ExtResource("1_aqk2v")]
+[node name="World" type="Node3D" unique_id=1220535623]
 
-[node name="TerrainBody" type="StaticBody3D" parent="." unique_id=1842066506]
+[node name="Terrain" type="Node3D" parent="." unique_id=1668090643 instance=ExtResource("1_036b0")]
 
-[node name="TerrainCollision" type="CollisionShape3D" parent="TerrainBody" unique_id=318497366]
-shape = ExtResource("2_036b0")
+[node name="TerrainBody" type="StaticBody3D" parent="." unique_id=458927445]
 
-[node name="Sun" type="DirectionalLight3D" parent="." unique_id=620152621]
+[node name="TerrainCollision" type="CollisionShape3D" parent="TerrainBody" unique_id=1329624675]
+shape = ExtResource("2_dwbse")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=286926394]
 transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 0, 0)
 light_energy = 1.1
 shadow_enabled = true
 directional_shadow_max_distance = 80.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=135255249]
-environment = SubResource("Environment_wse8f")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=125820794]
+environment = SubResource("Environment_k3n1d")
+script = ExtResource("3_pkg7o")
 
-[node name="MapBounds" type="StaticBody3D" parent="." unique_id=590497219]
+[node name="MapBounds" type="StaticBody3D" parent="." unique_id=1683832271]
 collision_layer = 4
 collision_mask = 0
 
-[node name="WallEast" type="CollisionShape3D" parent="MapBounds" unique_id=1994418857]
+[node name="WallEast" type="CollisionShape3D" parent="MapBounds" unique_id=1003316055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 5, 0)
-shape = SubResource("BoxShape3D_ic0uy")
-
-[node name="WallWest" type="CollisionShape3D" parent="MapBounds" unique_id=1625182315]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 5, 0)
-shape = SubResource("BoxShape3D_k3n1d")
-
-[node name="WallSouth" type="CollisionShape3D" parent="MapBounds" unique_id=108145413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 20.5)
 shape = SubResource("BoxShape3D_2o6r5")
 
-[node name="WallNorth" type="CollisionShape3D" parent="MapBounds" unique_id=872494377]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -20.5)
+[node name="WallWest" type="CollisionShape3D" parent="MapBounds" unique_id=312542088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 5, 0)
 shape = SubResource("BoxShape3D_70uel")
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1907431975 instance=ExtResource("3_dwbse")]
+[node name="WallSouth" type="CollisionShape3D" parent="MapBounds" unique_id=1318853334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 20.5)
+shape = SubResource("BoxShape3D_hiqwa")
+
+[node name="WallNorth" type="CollisionShape3D" parent="MapBounds" unique_id=1730522139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -20.5)
+shape = SubResource("BoxShape3D_2u3nc")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1907431975 instance=ExtResource("4_gbfbk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("4_pkg7o")
+script = ExtResource("5_ioo17")

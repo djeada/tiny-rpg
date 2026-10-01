@@ -69,6 +69,7 @@ func _init() -> void:
 
 	var world_env := WorldEnvironment.new()
 	world_env.name = "WorldEnvironment"
+	world_env.set_script(load("res://world_environment.gd"))
 	world_env.environment = env
 	world.add_child(world_env)
 	world_env.owner = world
