@@ -1,0 +1,10 @@
+# Godot cache and build output
+godot/.godot/
+build/
+
+# Blender autosave backups
+*.blend1
+*.blend2
+
+# Promo videos (large; published separately)
+marketing/

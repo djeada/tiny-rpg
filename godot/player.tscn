@@ -1,0 +1,34 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" path="res://assets/hero.glb" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+radius = 0.33
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sweqy"]
+radius = 0.2
+
+[node name="Player" type="CharacterBody3D" unique_id=1907431975]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=842602008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="Model" type="Node3D" parent="." unique_id=1520798620 instance=ExtResource("2_i3pqv")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1998159941]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 1.2, 0)
+shape = SubResource("SphereShape3D_sweqy")
+spring_length = 4.1
+margin = 0.05
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1688076127]
+current = true
+fov = 70.0
+far = 200.0
